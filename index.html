@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech for Good: How AI is Changing the World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            background-color: #0f172a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            opacity: 0.4;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.3" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .cta-button {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid rgba(99, 102, 241, 0.4);
+            color: #e2e8f0;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(99, 102, 241, 0.3);
+            border-color: rgba(99, 102, 241, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+        }
+
+        /* AI Brain Animation */
+        .ai-brain {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .brain-node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .brain-node:nth-child(1) { top: 50px; left: 100px; animation-delay: 0s; }
+        .brain-node:nth-child(2) { top: 100px; left: 200px; animation-delay: 0.4s; }
+        .brain-node:nth-child(3) { top: 150px; left: 50px; animation-delay: 0.8s; }
+        .brain-node:nth-child(4) { top: 200px; left: 150px; animation-delay: 1.2s; }
+        .brain-node:nth-child(5) { top: 120px; left: 120px; animation-delay: 1.6s; }
+
+        .brain-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent);
+            animation: flow 3s infinite;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .brain-connection:nth-child(6) {
+            top: 60px;
+            left: 120px;
+            width: 80px;
+            transform: rotate(45deg);
+        }
+
+        .brain-connection:nth-child(7) {
+            top: 160px;
+            left: 70px;
+            width: 100px;
+            transform: rotate(-30deg);
+        }
+
+        .brain-connection:nth-child(8) {
+            top: 130px;
+            left: 140px;
+            width: 60px;
+            transform: rotate(60deg);
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 0.6; 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.2);
+                box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
+            }
+        }
+
+        @keyframes flow {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            background-color: #0f172a;
+        }
+
+        .bg-darker {
+            background-color: #020617;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            color: #f1f5f9;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #f1f5f9;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 50px;
+        }
+
+        /* AI Definition */
+        .definition-text {
+            font-size: 1.3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .example-card {
+            background: linear-gradient(145deg, #1e293b, #334155);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .example-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .example-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .example-card i {
+            font-size: 3rem;
+            color: #6366f1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .example-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #f1f5f9;
+        }
+
+        .example-card p {
+            color: #94a3b8;
+        }
+
+        /* Impact Grid */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .impact-card {
+            background: linear-gradient(145deg, #1e293b, #334155);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon.healthcare { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .card-icon.education { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .card-icon.environment { background: linear-gradient(135deg, #10b981, #059669); }
+        .card-icon.accessibility { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .card-icon.disaster { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+        .impact-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #f1f5f9;
+        }
+
+        .impact-card p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .card-stats {
+            padding: 15px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #6366f1;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat {
+            font-weight: 600;
+            color: #a5b4fc;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: linear-gradient(145deg, #1e293b, #334155);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+        }
+
+        .tool-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-icon.chatgpt { background: linear-gradient(135deg, #10b981, #059669); }
+        .tool-icon.dalle { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .tool-icon.gemini { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .tool-icon.teachable { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .tool-icon.huggingface { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .tool-icon.sora { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #f1f5f9;
+        }
+
+        .tool-card p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .tool-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #f1f5f9;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #cbd5e1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #f1f5f9;
+            border: 2px solid rgba(241, 245, 249, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(241, 245, 249, 0.1);
+            border-color: rgba(241, 245, 249, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(145deg, #020617, #0f172a);
+            color: #e2e8f0;
+            padding: 50px 0 30px;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: #f1f5f9;
+        }
+
+        .footer-info p {
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-end;
+        }
+
+        .social-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 25px;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .social-link:hover {
+            color: #6366f1;
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-credits {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            color: #64748b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .impact-grid,
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .social-link {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Tech for Good: How AI is Changing the World</h1>
+                    <p class="hero-tagline">"AI isn't just smart — it's helpful, hopeful, and human-centered."</p>
+                    <button class="cta-button" onclick="scrollToSection('what-is-ai')">
+                        Discover How <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+                <div class="hero-visual">
+                    <div class="ai-brain">
+                        <div class="brain-node"></div>
+                        <div class="brain-node"></div>
+                        <div class="brain-node"></div>
+                        <div class="brain-node"></div>
+                        <div class="brain-node"></div>
+                        <div class="brain-connection"></div>
+                        <div class="brain-connection"></div>
+                        <div class="brain-connection"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- What is AI Section -->
+    <section id="what-is-ai" class="section">
+        <div class="container">
+            <h2 class="section-title">What is AI?</h2>
+            <div class="ai-definition">
+                <p class="definition-text">
+                    Artificial Intelligence (AI) is technology that enables machines to learn, think, and make decisions like humans. 
+                    It's already part of our daily lives, making things easier and more efficient.
+                </p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Chatbots</h3>
+                        <p>Customer service assistants that help 24/7</p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-microphone"></i>
+                        <h3>Voice Assistants</h3>
+                        <p>Siri, Alexa helping with daily tasks</p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-play"></i>
+                        <h3>Recommendations</h3>
+                        <p>YouTube, Netflix suggesting content you'll love</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How AI is Making a Difference -->
+    <section id="ai-impact" class="section bg-darker">
+        <div class="container">
+            <h2 class="section-title">How AI is Making a Difference</h2>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="card-icon healthcare">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Healthcare</h3>
+                    <p>AI helps doctors detect diseases early, analyze medical images, and develop personalized treatments. From cancer detection to drug discovery, AI is saving lives every day.</p>
+                    <div class="card-stats">
+                        <span class="stat">90% accuracy in cancer detection</span>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="card-icon education">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Personalized learning platforms adapt to each student's pace and style. AI tutors provide 24/7 support, making quality education accessible to everyone, everywhere.</p>
+                    <div class="card-stats">
+                        <span class="stat">40% improvement in learning outcomes</span>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="card-icon environment">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Environment</h3>
+                    <p>AI monitors climate change, optimizes energy usage, and enables smart agriculture. It's helping us build a sustainable future for our planet.</p>
+                    <div class="card-stats">
+                        <span class="stat">30% reduction in energy waste</span>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="card-icon accessibility">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3>Accessibility</h3>
+                    <p>Voice-to-text, image recognition, and smart navigation tools are breaking down barriers and creating inclusive experiences for people with disabilities.</p>
+                    <div class="card-stats">
+                        <span class="stat">Millions empowered daily</span>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="card-icon disaster">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Disaster Relief</h3>
+                    <p>AI predicts natural disasters, coordinates rescue operations, and helps communities prepare for emergencies, potentially saving thousands of lives.</p>
+                    <div class="card-stats">
+                        <span class="stat">72 hours earlier warning systems</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular AI Tools -->
+    <section id="ai-tools" class="section">
+        <div class="container">
+            <h2 class="section-title">Popular AI Tools & Platforms</h2>
+            <p class="section-subtitle">Explore these amazing AI tools that are democratizing artificial intelligence</p>
+            <div class="tools-grid">
+                <a href="https://chat.openai.com/" target="_blank" class="tool-card">
+                    <div class="tool-icon chatgpt">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>ChatGPT</h3>
+                    <p>Conversational AI for writing, coding, and problem-solving</p>
+                    <span class="tool-category">Text Generation</span>
+                </a>
+                <a href="https://openai.com/dall-e/" target="_blank" class="tool-card">
+                    <div class="tool-icon dalle">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>DALL·E</h3>
+                    <p>Create stunning images from text descriptions</p>
+                    <span class="tool-category">Image Generation</span>
+                </a>
+                <a href="https://gemini.google.com/" target="_blank" class="tool-card">
+                    <div class="tool-icon gemini">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Google Gemini</h3>
+                    <p>Advanced AI assistant for complex reasoning tasks</p>
+                    <span class="tool-category">AI Assistant</span>
+                </a>
+                <a href="https://teachablemachine.withgoogle.com/" target="_blank" class="tool-card">
+                    <div class="tool-icon teachable">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Teachable Machine</h3>
+                    <p>Train your own machine learning models easily</p>
+                    <span class="tool-category">Education</span>
+                </a>
+                <a href="https://huggingface.co/" target="_blank" class="tool-card">
+                    <div class="tool-icon huggingface">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3>Hugging Face</h3>
+                    <p>Open-source AI models and datasets community</p>
+                    <span class="tool-category">Open Source</span>
+                </a>
+                <a href="https://openai.com/sora" target="_blank" class="tool-card">
+                    <div class="tool-icon sora">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Sora</h3>
+                    <p>AI-powered video generation for creativity and education</p>
+                    <span class="tool-category">Video Generation</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="cta" class="section bg-gradient">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Explore AI?</h2>
+                <p class="cta-text">Join the movement of using AI for positive change. Start building ethical AI projects that make a difference.</p>
+                <div class="cta-buttons">
+                    <a href="#ai-tools" class="btn btn-primary">Explore AI Tools</a>
+                    <a href="https://www.coursera.org/learn/machine-learning" target="_blank" class="btn btn-secondary">Learn AI Basics</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Built with ❤️ for a Better Future</h3>
+                    <p>Created by Leena Santosh Kadam </p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/yourusername" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:your.email@example.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                        Contact
+                    </a>
+                </div>
+            </div>
+            <div class="footer-credits">
+                <p>&copy; 2024 Tech for Good. Icons by Font Awesome. Made with passion for AI ethics.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.impact-card, .tool-card, .example-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
